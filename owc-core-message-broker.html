@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="owc-core-message-broker">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `owc-core-message-broker`
+     * Pub Sub design pattern owc 2.0
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class OwcCoreMessageBroker extends Polymer.Element {
+      static get is() { return 'owc-core-message-broker'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'owc-core-message-broker'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(OwcCoreMessageBroker.is, OwcCoreMessageBroker);
+  </script>
+</dom-module>
