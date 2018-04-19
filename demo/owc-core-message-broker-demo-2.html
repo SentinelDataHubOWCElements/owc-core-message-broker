@@ -1,0 +1,46 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+
+<dom-module id="owc-core-message-broker-demo-2">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello2!!!</h2>
+    <p>OWC CORE MODULE 2<p>
+    <button on-click="handleClick">push</button>
+  </template>
+
+  <script>
+    
+    //owc core message broker demo 1
+    
+    class OwcCoreMessageBrokerDemo2 extends Polymer.Element {
+      static get is() { return 'owc-core-message-broker-demo-2'; }
+      static get properties() {
+        return {
+          ctx: {
+            type: Object,
+            value: {}
+          }
+        };
+      }
+      created(){
+        console.warn("hello from owc-core-mesage-broker-demo-2 component.");
+        
+      }
+
+      handleClick() {
+        //var dummy = document.createElement('hello-owc');
+        //this.ctx.wm.pushComponent(dummy,"150px", "Test Title" );
+        //console.log('this.ctx: ', this.ctx);
+        console.log("hello from owc-core-mesage-broker-demo-2 component.");
+      }
+
+
+    }
+
+    window.customElements.define(OwcCoreMessageBrokerDemo2.is, OwcCoreMessageBrokerDemo2);
+  </script>
+</dom-module>
