@@ -10,6 +10,8 @@
     <h2>Hello2!!!</h2>
     <p>OWC CORE MODULE 2<p>
     <button on-click="handleClick">push</button>
+    <button on-click="onTestMessageBrokerBis">2- TEST MESSAGE BROKER</button>    
+
   </template>
 
   <script>
@@ -20,7 +22,7 @@
       static get is() { return 'owc-core-message-broker-demo-2'; }
       static get properties() {
         return {
-          ctx: {
+          _ctx: {
             type: Object,
             value: {}
           }
@@ -36,6 +38,10 @@
         //this.ctx.wm.pushComponent(dummy,"150px", "Test Title" );
         //console.log('this.ctx: ', this.ctx);
         console.log("hello from owc-core-mesage-broker-demo-2 component.");
+      }
+
+      onTestMessageBrokerBis(){
+          console.log("TEST MESSAGE BROKER 2");
       }
 
 

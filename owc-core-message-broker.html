@@ -1,6 +1,9 @@
 <link rel="import" href="../polymer/polymer-element.html">
 
+<!--MODULE-->
 <dom-module id="owc-core-message-broker">
+  
+  <!--VIEW-->
   <template>
     <style>
       :host {
@@ -8,19 +11,24 @@
       }
     </style>
     <h2>Hello [[prop1]]!</h2>
+    
+    <!--Test buttons for message broker functions test. Should be called by -->
+    <button on-click="publish">TEST PUBLISH</button>
+    <button on-click="subscribe">TEST SUBSCRIBE</button>
+    <button on-click="unsubscribe">TEST UNSUSCRIBE</button>
+
   </template>
 
-  <script>
-    /**
-     * `owc-core-message-broker`
-     * Pub Sub design pattern owc 2.0
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
+  <!--SCRIPT-->
+  <script> 
+
     class OwcCoreMessageBroker extends Polymer.Element {
-      static get is() { return 'owc-core-message-broker'; }
+    
+      static get is() { 
+        return 'owc-core-message-broker'; 
+      }
+
+      //Get Properties
       static get properties() {
         return {
           prop1: {
@@ -29,8 +37,26 @@
           }
         };
       }
+
+      //PUBLISH
+      publish(){
+        console.log("...message-broker 2.0 publish...")
+      }
+
+      //SUBSCRIBE
+      subscribe(){
+        console.log("...message-broker 2.0 suscribe...")        
+      }
+
+      //UNSUBSCRIBE
+      unsubscribe(){
+        console.log("...message-broker 2.0 unsuscribe...")
+      }
     }
 
     window.customElements.define(OwcCoreMessageBroker.is, OwcCoreMessageBroker);
   </script>
+
+
+
 </dom-module>
