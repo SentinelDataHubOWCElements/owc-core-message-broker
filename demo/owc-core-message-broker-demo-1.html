@@ -5,34 +5,33 @@
 
   <!--VIEW-->
   <template>
+    <!--Internal CSS-->
     <style>
-      :host {
-        display: block;
-      }
+      :host {display: block;}
+      .myred{color:red;}
+      .fitter{width: 100%;}
     </style>
-    <h2>Hello!!!</h2>
-    <p>OWC CORE MODULE 1 [[prop1]] [[token]]</p>
-    
-    <!--Message broker migration Buttons-->
-    <button on-click="publish">publish</button>    
-    <button on-click="subscribe">subscribe</button>
-    <button on-click="unsubscribe">unsubscribe</button>
 
+    <!--Demo-1 Template-->
+    <h3 class="myred">[[componentName]]</h3>
+    <p class="myred">Token: [[token]]</p>
+    <button class="fitter" on-click="publish">publish</button>    
+    <button class="fitter" on-click="subscribe">subscribe</button>
+    <button class="fitter" on-click="unsubscribe">unsubscribe</button>
   </template>
 
   <!--SCRIPT-->
   <script>
-    
     class OwcCoreMessageBrokerDemo1 extends Polymer.Element {
         static get is() { return 'owc-core-message-broker-demo-1'; }
         static get properties() {
             return {
-                prop1: {
+                componentName:{
                     type: String,
-                    value: 'test1Prop'
+                    value: 'owc-core-message-broker-demo-1'
                 },
 
-                //Token
+                //Token for local component
                 token:{
                     type: String,
                     value:""
@@ -45,11 +44,11 @@
             };
         }
         
-        //Button Hooks for message broker test
+        //BUTTON HOOKS for owc-core-message-broker test
 
         //Publish
         publish(){
-            this._ctx.mb.publish();
+            this._ctx.mb.publish("sayhello");
         }
 
         //Subscribe
@@ -58,17 +57,16 @@
         }
 
         _subscribe(){
-            //console.log("_subscribe called");
-            this._ctx.mb.subscribe("t", "f", "targ");            
+            this.token = this._ctx.mb.subscribe('sayhello',function(){
+                alert("Message Broker test message in demo-1!");
+            });   
         }
 
         //Unsubscribe
         unsubscribe(){
-            this._ctx.mb.unsubscribe();
+            this._ctx.mb.unsubscribe(this.token);
         }
     }
-
     window.customElements.define(OwcCoreMessageBrokerDemo1.is, OwcCoreMessageBrokerDemo1);
   </script>
-
 </dom-module>
