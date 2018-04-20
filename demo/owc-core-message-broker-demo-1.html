@@ -11,7 +11,7 @@
       }
     </style>
     <h2>Hello!!!</h2>
-    <p>OWC CORE MODULE 1 [[prop1]] [[token]]<p>
+    <p>OWC CORE MODULE 1 [[prop1]] [[token]]</p>
     
     <!--Message broker migration Buttons-->
     <button on-click="publish">publish</button>    
@@ -29,8 +29,10 @@
             return {
                 prop1: {
                     type: String,
-                    value: 'test prop1'
+                    value: 'test1Prop'
                 },
+
+                //Token
                 token:{
                     type: String,
                     value:""
@@ -52,7 +54,12 @@
 
         //Subscribe
         subscribe(){
-            this._ctx.mb.subscribe();
+            this._subscribe();
+        }
+
+        _subscribe(){
+            //console.log("_subscribe called");
+            this._ctx.mb.subscribe("t", "f", "targ");            
         }
 
         //Unsubscribe

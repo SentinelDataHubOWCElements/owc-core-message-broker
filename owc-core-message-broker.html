@@ -11,6 +11,7 @@
       }
     </style>
     <h2>Hello [[prop1]]!</h2>
+    <p>LASTUID: [[lastUid]]</p>
     
     <!--Test buttons for message broker functions test. Should be called by -->
     <button on-click="publish">TEST PUBLISH</button>
@@ -34,21 +35,71 @@
           prop1: {
             type: String,
             value: 'owc-core-message-broker'
+          },
+
+          topics: {
+            type: Array,
+            value:[]
+          },
+
+          lastUid: {
+            type: Number,
+            value : -1
           }
         };
       }
 
-      //PUBLISH
+      /**
+      * PUBLISH - This method is devoted to send a message to subscribed objects
+      *
+      * @param {?String} topic: event name to subscribe
+      * @param {?String} data: callback parameter
+      * @param {?String} target: subset of object to receive the messages
+      * @return {boolean}
+      */
       publish(){
         console.log("...message-broker 2.0 publish...")
       }
 
-      //SUBSCRIBE
-      subscribe(){
-        console.log("...message-broker 2.0 suscribe...")        
+      /**
+      * SUBSCRIBE - Subscribe a call back for a specific topic
+      *
+      * @param {?String} topic: event name to subscribe
+      * @param {?Function} func: callback
+      * @param {?String} target: subset of object to receive the messages
+      * @return {String} generated token
+      */
+      subscribe(topic, func, target){
+        console.log("...message-broker 2.0 suscribe...", topic, func, target);
+        var self = this;
+        if (!self.topics.hasOwnProperty(topic)) {
+            self.topics[topic] = [];
+        }
+        var token = (++self.lastUid).toString();
+        if (target) {
+            console.log("owc-core-message-broker target: ", target)
+            self.topics[topic].push({
+                token: token,
+                func: func,
+                target: target
+            });
+        } else {
+            console.log("no target");
+            self.topics[topic].push({
+                token: token,
+                func: func
+            });
+        }
+        console.log("owc-core-message-broker token: ", token)        
+        return token;        
       }
 
-      //UNSUBSCRIBE
+      /**
+      * UNSUBSCRIBE - Unsubscribe to an event via token
+      *
+      * @param {?Number} token: registration token
+      * @return {boolean}
+      */
       unsubscribe(){
         console.log("...message-broker 2.0 unsuscribe...")
       }

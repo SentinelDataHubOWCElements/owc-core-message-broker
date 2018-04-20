@@ -1,52 +1,67 @@
 <link rel="import" href="../../polymer/polymer-element.html">
 
+<!--MODULE-->
 <dom-module id="owc-core-message-broker-demo-2">
+
+  <!--VIEW-->
   <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <h2>Hello2!!!</h2>
-    <p>OWC CORE MODULE 2<p>
-    <button on-click="handleClick">push</button>
-    <button on-click="onTestMessageBrokerBis">2- TEST MESSAGE BROKER</button>    
+    <h2>Hello!!!</h2>
+    <p>OWC CORE MODULE 2 [[prop1]] [[token]]<p>
+    
+    <!--Message broker migration Buttons-->
+    <button on-click="publish">publish</button>    
+    <button on-click="subscribe">subscribe</button>
+    <button on-click="unsubscribe">unsubscribe</button>
 
   </template>
 
+  <!--SCRIPT-->
   <script>
     
-    //owc core message broker demo 1
-    
     class OwcCoreMessageBrokerDemo2 extends Polymer.Element {
-      static get is() { return 'owc-core-message-broker-demo-2'; }
-      static get properties() {
-        return {
-          _ctx: {
-            type: Object,
-            value: {}
-          }
-        };
-      }
-      created(){
-        console.warn("hello from owc-core-mesage-broker-demo-2 component.");
+        static get is() { return 'owc-core-message-broker-demo-2'; }
+        static get properties() {
+            return {
+                prop1: {
+                    type: String,
+                    value: 'test2prop'
+                },
+                token:{
+                    type: String,
+                    value:""
+                },
+
+                _ctx: {
+                    type: Object,
+                    value: {}
+                }
+            };
+        }
         
-      }
+        //Button Hooks for message broker test
 
-      handleClick() {
-        //var dummy = document.createElement('hello-owc');
-        //this.ctx.wm.pushComponent(dummy,"150px", "Test Title" );
-        //console.log('this.ctx: ', this.ctx);
-        console.log("hello from owc-core-mesage-broker-demo-2 component.");
-      }
+        //Publish
+        publish(){
+            this._ctx.mb.publish();
+        }
 
-      onTestMessageBrokerBis(){
-          console.log("TEST MESSAGE BROKER 2");
-      }
+        //Subscribe
+        subscribe(){
+            this._ctx.mb.subscribe();
+        }
 
-
+        //Unsubscribe
+        unsubscribe(){
+            this._ctx.mb.unsubscribe();
+        }
     }
 
     window.customElements.define(OwcCoreMessageBrokerDemo2.is, OwcCoreMessageBrokerDemo2);
   </script>
+
 </dom-module>
