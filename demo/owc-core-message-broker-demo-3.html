@@ -1,0 +1,62 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+
+<!--MODULE-->
+<dom-module id="owc-core-message-broker-demo-3">
+
+  <!--VIEW-->
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .comp3{
+        color: green;
+      }
+
+      .mygreen{
+          color: green;
+          border-radius: 10px;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 60%;
+          height: 40px;
+          outline:none;
+          font-weight: bold;
+      }
+    </style>
+    <h3 class="comp3">[[componentName]]</h3>
+    <b>Publish only button</b>
+    <hr>
+    <!--Message broker migration Buttons-->
+    <button class="mygreen" on-click="publish">publish</button>    
+  </template>
+
+  <!--SCRIPT-->
+  <script>
+    class OwcCoreMessageBrokerDemo3 extends Polymer.Element {
+        static get is() { return 'owc-core-message-broker-demo-3'; }
+        static get properties() {
+            return {
+                componentName:{
+                      type: String,
+                      value: 'owc-core-message-broker-demo-3'
+                },
+                _ctx: {
+                    type: Object,
+                    value: {}
+                }
+            };
+        }
+        
+        //PUBLISH
+        publish(){
+            this._ctx.mb.publish("sayhello");
+        }
+    }
+
+    window.customElements.define(OwcCoreMessageBrokerDemo3.is, OwcCoreMessageBrokerDemo3);
+  </script>
+
+</dom-module>

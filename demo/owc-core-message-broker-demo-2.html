@@ -1,0 +1,78 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+
+<!--MODULE-->
+<dom-module id="owc-core-message-broker-demo-2">
+
+  <!--VIEW-->
+  <template>
+    
+      <!--CSS STYLE-->
+      <style>
+        :host {display: block;}
+        .myblue{color:dodgerblue;}
+        .fitterb{width: 60%; height: 50px;}
+      </style>
+  
+      <h3 class="myblue">[[componentName]]</h3>
+      <p class="myblue">Token: [[token]]</p>
+      
+      <!--Message broker migration Buttons-->
+      <button class="fitterb" on-click="publish">publish</button>    
+      <button class="fitterb" on-click="subscribe">subscribe</button>
+      <button class="fitterb" on-click="unsubscribe">unsubscribe</button>
+  
+    </template>
+  
+    <!--SCRIPT-->
+    <script>
+      
+      class OwcCoreMessageBrokerDemo2 extends Polymer.Element {
+          static get is() { return 'owc-core-message-broker-demo-2'; }
+          static get properties() {
+              return {
+                  componentName:{
+                      type: String,
+                      value: 'owc-core-message-broker-demo-2'
+                  },
+  
+                  //Token for local component
+                  token:{
+                      type: String,
+                      value:""
+                  },
+  
+                  _ctx: {
+                      type: Object,
+                      value: {}
+                  }
+              };
+          }
+          
+          //BUTTON HOOKS for owc-core-message-broker test
+  
+          //Publish
+          publish(){
+              this._ctx.mb.publish("sayhello");
+          }
+  
+          //Subscribe
+          subscribe(){
+              this._subscribe();
+          }
+  
+          _subscribe(){
+              this.token = this._ctx.mb.subscribe('sayhello',function(){
+                  alert("hello from component-a");
+              });   
+          }
+  
+          //Unsubscribe
+          unsubscribe(){
+              this._ctx.mb.unsubscribe(this.token);
+          }
+      }
+
+    window.customElements.define(OwcCoreMessageBrokerDemo2.is, OwcCoreMessageBrokerDemo2);
+  </script>
+
+</dom-module>
